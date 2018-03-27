@@ -1,0 +1,14 @@
+.heading {
+  margin-bottom: 40px;
+  border-bottom: 3px solid black;
+}
+
+#annualIncome, #annualResult, #history {
+  margin-bottom: 50px;
+}
+
+.center {
+  padding: 30px 0;
+  text-align: center;
+  background-color: gray;
+}

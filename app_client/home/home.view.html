@@ -1,0 +1,111 @@
+<navigation></navigation>
+<page-header content="vm.pageHeader"></page-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-1"></div>
+    <div class="col-xl-10">
+      <div id="annualIncome">
+        <h1 class="heading">Annual Income</h1>
+        <form>
+          <div class="form-group row">
+            <Label for="yearSeletor" class="col-sm-4 col-form-label">Year</label>
+            <div class="col-sm-8">
+              <select class="form-control" id="yearSeletor">
+                <option>2017 - 2018</option>
+                <option>2016 - 2017</option>
+                <option>2015 - 2016</option>
+                <option>2014 - 2015</option>
+                <option>2013 - 2014</option>
+                <option>2012 - 2013</option>
+                <option>2011 - 2012</option>
+                <option>2010 - 2011</option>
+                <option>2009 - 2010</option>
+                <option>2008 - 2009</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <Label for="grossInput" class="col-sm-4 col-form-label">Gross</label>
+            <div class="col-sm-8">
+              <div class="input-group" id="grossInput">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control">
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <Label for="grossPlusSupInput" class="col-sm-4 col-form-label">Gross + Sup</label>
+            <div class="col-sm-8">
+              <div class="input-group" id="grossPlusSupInput">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control">
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <Label for="supRateInput" class="col-sm-4 col-form-label">Sup rate</label>
+            <div class="col-sm-8">
+              <div class="input-group" id="supRateInput">
+                <input type="text" class="form-control">
+                <div class="input-group-append">
+                  <span class="input-group-text">%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="annualResult">
+        <h1 class="heading">Annual Result</h1>
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <td style="width: 50%">Net</td>
+              <td style="width: 50%">1000</td>
+            </tr>
+            <tr>
+              <td style="width: 50%">Sup</td>
+              <td style="width: 50%">1000</td>
+            </tr>
+            <tr>
+              <td style="width: 50%">Net + Sup</td>
+              <td style="width: 50%">1000</td>
+            </tr>
+            <tr>
+              <td style="width: 50%">Gross</td>
+              <td style="width: 50%">1000</td>
+            </tr>
+            <tr>
+              <td style="width: 50%">Gross + Sup</td>
+              <td style="width: 50%">1000</td>
+            </tr>
+            <tr>
+              <td style="width: 50%">Tax</td>
+              <td style="width: 50%">1000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-xl-1"></div>
+  </div>
+</div>
+
+<footer-generic></footer-generic>
