@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
 
+require('./app_api/models/db');
+
 var app = express();
 
 // Generate minify tex.min.js from angular javascript sources.
