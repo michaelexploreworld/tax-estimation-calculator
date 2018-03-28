@@ -6,311 +6,38 @@
     <div class="col-xl-10">
       <div id="history">
         <h1 class="heading">History</h1>
-
-        <div>
-          <div class="row">
-            <div class="col-lg-6">
+        <div id="records">
+          <div class="row" ng-repeat="items in vm.historyMatrix">
+            <div class="col-lg-6" ng-repeat="item in items">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
+                  <h5 class="card-title">{{ item.time }}</h5>
                   <p class="card-text">
                     <table class="table table-bordered table-striped">
                       <tbody>
                         <tr>
                           <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
+                          <td style="width: 50%">{{ item.net }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
+                          <td style="width: 50%">{{ item.sup }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
+                          <td style="width: 50%">{{ item.netPlusSup }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
+                          <td style="width: 50%">{{ item.gross }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
+                          <td style="width: 50%">{{ item.grossPlusSup }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
-                  <p class="card-text">
-                    <table class="table table-bordered table-striped">
-                      <tbody>
-                        <tr>
-                          <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
-                  <p class="card-text">
-                    <table class="table table-bordered table-striped">
-                      <tbody>
-                        <tr>
-                          <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
-                  <p class="card-text">
-                    <table class="table table-bordered table-striped">
-                      <tbody>
-                        <tr>
-                          <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
-                  <p class="card-text">
-                    <table class="table table-bordered table-striped">
-                      <tbody>
-                        <tr>
-                          <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
-                  <p class="card-text">
-                    <table class="table table-bordered table-striped">
-                      <tbody>
-                        <tr>
-                          <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
-                  <p class="card-text">
-                    <table class="table table-bordered table-striped">
-                      <tbody>
-                        <tr>
-                          <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">2018/03/06</h5>
-                  <p class="card-text">
-                    <table class="table table-bordered table-striped">
-                      <tbody>
-                        <tr>
-                          <td style="width: 50%">Net</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">1000</td>
-                        </tr>
-                        <tr>
-                          <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">1000</td>
+                          <td style="width: 50%">{{ item.tax }}</td>
                         </tr>
                       </tbody>
                     </table>

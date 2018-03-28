@@ -12,3 +12,7 @@
   text-align: center;
   background-color: gray;
 }
+
+#records div {
+  margin-bottom: 10px;
+}
