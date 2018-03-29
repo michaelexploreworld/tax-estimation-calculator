@@ -7,7 +7,10 @@ var bodyParser = require('body-parser');
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
 
+// Connecting to the database.
 require('./app_api/models/db');
+
+var routesApi = require('./app_api/routes/index');
 
 var app = express();
 
@@ -41,9 +44,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
 
+// Define api routes.
+app.use('/api', routesApi);
+
 // If no URL requests are matched, send back index.html.
 app.use(function(req, res) {
-  res.sendfile(path.join(__dirname, 'app_client', 'index.html'));
+  res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
 });
 
 // catch 404 and forward to error handler

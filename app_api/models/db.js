@@ -43,3 +43,4 @@ process.on('SIGTERM', function() {
 });
 
 require('./personalTaxRecords');
+require('./taxRates');
