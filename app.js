@@ -10,8 +10,6 @@ var fs = require('fs');
 // Connecting to the database.
 require('./app_api/models/db');
 
-var routesApi = require('./app_api/routes/index');
-
 var app = express();
 
 // Generate minify tex.min.js from angular javascript sources.
@@ -44,7 +42,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
 
+// Start taxRatesGenerator to scrap tax rates from https://www.exfin.com/australian-tax-rates.
+var TaxRatesGenerator = require('./server_process/taxRatesGenerator');
+generator = new TaxRatesGenerator('0 0 6 * * *');
+generator.start();
+
 // Define api routes.
+var routesApi = require('./app_api/routes/index');
 app.use('/api', routesApi);
 
 // If no URL requests are matched, send back index.html.
@@ -68,6 +72,19 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// Listen for shutdown from nodemon.
+process.once('SIGUSR2', function () {
+  generator.stop();
+});
+// Listen for shutdown from application.
+process.on('SIGINT', function () {
+  generator.stop();
+});
+// Listen for shutdown from Heroku.
+process.on('SIGTERM', function() {
+  generator.stop();
 });
 
 module.exports = app;

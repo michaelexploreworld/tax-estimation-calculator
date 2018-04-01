@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Tax = mongoose.model('taxRate');
+var Tax = mongoose.model('TaxRate');
 
 var sendJsonResponse = function (res, status, content) {
   res.status(status);
