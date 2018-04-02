@@ -6,6 +6,7 @@ var ctrlTaxRates = require('../controllers/taxRates');
 
 // personalTaxRecords
 router.post('/personalTaxRecords', ctrlPersonalTaxRecords.personalTaxRecordsCreate);
+router.get('/personalTaxRecords', ctrlPersonalTaxRecords.personalTaxRecordByEmail);
 router.get('/personalTaxRecords/:personalTaxRecordId', ctrlPersonalTaxRecords.personalTaxRecordsReadOne);
 
 // taxResults

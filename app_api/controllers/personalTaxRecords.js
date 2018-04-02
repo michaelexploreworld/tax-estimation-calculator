@@ -18,6 +18,34 @@ module.exports.personalTaxRecordsCreate = function (req, res) {
   });
 }
 
+module.exports.personalTaxRecordByEmail = function (req, res) {
+  var email = req.query.email;
+
+  if (email) {
+    Ptr
+      .findOne({ email: email })
+      .exec(function (err, personalTaxRecord) {
+        if (!personalTaxRecord) {
+          sendJsonResponse(res, 404, {
+            "message": "personalTaxRecordId not found"
+          });
+          return;
+        } else if (err) {
+          sendJsonResponse(res, 404, err);
+          return;
+        } else {
+          sendJsonResponse(res, 200, personalTaxRecord);
+        }
+      });
+  } else {
+    sendJsonResponse(res, 404, {
+      "message": "Email query parameter is required"
+    });
+    return;
+  }
+
+}
+
 module.exports.personalTaxRecordsReadOne = function (req, res) {
   if (req.params && req.params.personalTaxRecordId) {
     Ptr

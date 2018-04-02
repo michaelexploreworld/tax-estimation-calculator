@@ -16,7 +16,7 @@ var doAddTaxResult = function (req, res, personalTaxRecord) {
       net: req.body.net,
       sup: req.body.sup,
       netPlusSup: req.body.netPlusSup,
-      gross: req.body.req,
+      gross: req.body.gross,
       grossPlusSup: req.body.grossPlusSup,
       tax: req.body.tax,
       taxRange: req.body.taxRange
