@@ -7,11 +7,12 @@
     <div class="col-xl-10">
       <div id="annualIncome">
         <h1 class="heading">Annual Income</h1>
-        <form>
+        <form id="searchTax" name="searchTax" role="form" ng-submit="vm.onSubmit()">
+          <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
           <div class="form-group row">
             <Label for="yearSeletor" class="col-sm-4 col-form-label">Year</label>
             <div class="col-sm-8">
-              <select class="form-control" id="yearSeletor" ng-model="vm.formData.year" ng-options="x for (x,y) in vm.yearSeletorOptions">
+              <select class="form-control" id="yearSeletor" ng-model="vm.formData.year" ng-options="option.to + ' - ' + option.from for option in vm.yearSeletorOptions">
               </select>
             </div>
           </div>
@@ -22,7 +23,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">$</span>
                 </div>
-                <input type="text" class="form-control" ng-model="vm.formData.gross">
+                <input type="text" class="form-control" ng-model="vm.formData.gross" ng-disabled="vm.formData.grossPlusSup && vm.formData.supRate">
                 <div class="input-group-append">
                   <span class="input-group-text">.00</span>
                 </div>
@@ -36,7 +37,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">$</span>
                 </div>
-                <input type="text" class="form-control" ng-model="vm.formData.grossPlusSup">
+                <input type="text" class="form-control" ng-model="vm.formData.grossPlusSup" ng-disabled="vm.formData.gross && vm.formData.supRate">
                 <div class="input-group-append">
                   <span class="input-group-text">.00</span>
                 </div>
@@ -47,7 +48,7 @@
             <Label for="supRateInput" class="col-sm-4 col-form-label">Sup rate</label>
             <div class="col-sm-8">
               <div class="input-group" id="supRateInput">
-                <input type="text" class="form-control" ng-model="vm.formData.supRate">
+                <input type="text" class="form-control" ng-model="vm.formData.supRate" ng-disabled="vm.formData.gross && vm.formData.grossPlusSup">
                 <div class="input-group-append">
                   <span class="input-group-text">%</span>
                 </div>
@@ -68,27 +69,27 @@
           <tbody>
             <tr>
               <td style="width: 50%">Net</td>
-              <td style="width: 50%">{{ vm.annualResult.net }}</td>
+              <td style="width: 50%">{{ vm.annualResult.net | formatFloat: 2 }}</td>
             </tr>
             <tr>
               <td style="width: 50%">Sup</td>
-              <td style="width: 50%">{{ vm.annualResult.sup }}</td>
+              <td style="width: 50%">{{ vm.annualResult.sup | formatFloat: 2 }}</td>
             </tr>
             <tr>
               <td style="width: 50%">Net + Sup</td>
-              <td style="width: 50%">{{ vm.annualResult.netPlusSup }}</td>
+              <td style="width: 50%">{{ vm.annualResult.netPlusSup | formatFloat: 2 }}</td>
             </tr>
             <tr>
               <td style="width: 50%">Gross</td>
-              <td style="width: 50%">{{ vm.annualResult.gross }}</td>
+              <td style="width: 50%">{{ vm.annualResult.gross | formatFloat: 2 }}</td>
             </tr>
             <tr>
               <td style="width: 50%">Gross + Sup</td>
-              <td style="width: 50%">{{ vm.annualResult.grossPlusSup }}</td>
+              <td style="width: 50%">{{ vm.annualResult.grossPlusSup | formatFloat: 2 }}</td>
             </tr>
             <tr>
               <td style="width: 50%">Tax</td>
-              <td style="width: 50%">{{ vm.annualResult.tax }}</td>
+              <td style="width: 50%">{{ vm.annualResult.tax | formatFloat: 2 }}</td>
             </tr>
           </tbody>
         </table>

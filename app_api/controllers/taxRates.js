@@ -9,6 +9,7 @@ var sendJsonResponse = function (res, status, content) {
 module.exports.taxRatesList = function (req, res) {
   Tax
     .find({})
+    .sort({to: 'desc'})
     .exec(
       function (err, taxRates) {
         if (err) {

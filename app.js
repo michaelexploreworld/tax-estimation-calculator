@@ -19,7 +19,10 @@ var appClientFiles = [
   'app_client/history/history.controller.js',
   'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/pageHeader/pageHeader.directive.js',
-  'app_client/common/directives/footerGeneric/footerGeneric.directive.js'
+  'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
+  'app_client/common/services/tecData.service.js',
+  'app_client/common/services/taxCalculator.service.js',
+  'app_client/common/filters/formatFloat.filter.js'
 ];
 var code = appClientFiles.map(function (file) {
   return fs.readFileSync(file, 'utf8');
