@@ -11,38 +11,38 @@
             <div class="col-lg-6" ng-repeat="item in items">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">{{ item.time }}</h5>
+                  <h5 class="card-title">{{ item.createdOn | date: 'dd/mm/yyyy h:mm:ss a' }}</h5>
                   <p class="card-text">
                     <table class="table table-bordered table-striped">
                       <tbody>
                         <tr>
                           <td style="width: 50%">Net</td>
-                          <td style="width: 50%">{{ item.net }}</td>
+                          <td style="width: 50%">{{ item.net | formatFloat: 2 }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Sup</td>
-                          <td style="width: 50%">{{ item.sup }}</td>
+                          <td style="width: 50%">{{ item.sup | formatFloat: 2 }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Net + Sup</td>
-                          <td style="width: 50%">{{ item.netPlusSup }}</td>
+                          <td style="width: 50%">{{ item.netPlusSup | formatFloat: 2 }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Gross</td>
-                          <td style="width: 50%">{{ item.gross }}</td>
+                          <td style="width: 50%">{{ item.gross | formatFloat: 2 }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Gross + Sup</td>
-                          <td style="width: 50%">{{ item.grossPlusSup }}</td>
+                          <td style="width: 50%">{{ item.grossPlusSup | formatFloat: 2 }}</td>
                         </tr>
                         <tr>
                           <td style="width: 50%">Tax</td>
-                          <td style="width: 50%">{{ item.tax }}</td>
+                          <td style="width: 50%">{{ item.tax | formatFloat: 2 }}</td>
                         </tr>
                       </tbody>
                     </table>
                   </p>
-                  <a href="#" class="btn btn-danger">Delete</a>
+                  <a href="#" class="btn btn-danger" ng-click="vm.deleteRecord(item._id)">Delete</a>
                 </div>
               </div>
             </div>

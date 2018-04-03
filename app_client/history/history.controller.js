@@ -3,66 +3,47 @@
     .module('tecApp')
     .controller('historyCtrl', historyCtrl);
 
-  function historyCtrl () {
-    function listToMatrix(array, colNum) {
-      var matrix = [];
+  function arrayToMatrix(array, colNum) {
+    var matrix = [];
 
-      for (var arrayIndex = 0, row = -1; arrayIndex < array.length; arrayIndex++) {
-        var col = arrayIndex % colNum;
-        if (col == 0) {
-          matrix[++row] = [];
-        }
-        matrix[row][col] = array[arrayIndex];
+    for (var arrayIndex = 0, row = -1; arrayIndex < array.length; arrayIndex++) {
+      var col = arrayIndex % colNum;
+      if (col == 0) {
+        matrix[++row] = [];
       }
-
-      return matrix;
+      matrix[row][col] = array[arrayIndex];
     }
 
-    var vm = this;
-    var historyList = [
-      {
-        time: '2018/03/06',
-        net: 1000,
-        sup: 1000,
-        netPlusSup: 1000,
-        gross: 1000,
-        grossPlusSup: 1000,
-        tax: 1000 },
-      {
-        time: '2018/03/06',
-        net: 1000,
-        sup: 1000,
-        netPlusSup: 1000,
-        gross: 1000,
-        grossPlusSup: 1000,
-        tax: 1000 },
-      {
-        time: '2018/03/06',
-        net: 1000,
-        sup: 1000,
-        netPlusSup: 1000,
-        gross: 1000,
-        grossPlusSup: 1000,
-        tax: 1000
-      }, {
-        time: '2018/03/06',
-        net: 1000,
-        sup: 1000,
-        netPlusSup: 1000,
-        gross: 1000,
-        grossPlusSup: 1000,
-        tax: 1000
-      }, {
-        time: '2018/03/06',
-        net: 1000,
-        sup: 1000,
-        netPlusSup: 1000,
-        gross: 1000,
-        grossPlusSup: 1000,
-        tax: 1000
-      }
-    ];
+    return matrix;
+  }
 
-    vm.historyMatrix = listToMatrix(historyList, 2);
+  historyCtrl.$inject = ['tecData'];
+  function historyCtrl (tecData) {
+    var vm = this;
+
+    tecData.getPersonalTaxRecordByEmail('test@gmail.com')
+      .then(function successCallback(response) {
+        var personalTaxRecord = response.data;
+        if (personalTaxRecord) {
+          vm.personalTaxRecord = personalTaxRecord;
+          vm.historyMatrix = arrayToMatrix(vm.personalTaxRecord.taxResults, 2);
+        }
+      }, function errorCallback(response) {
+        console.log('Something went wrong when getting personalTaxRecord.');
+      });
+
+    vm.deleteRecord = function (taxResultId) {
+      tecData.deleteTaxResult(vm.personalTaxRecord._id, taxResultId)
+        .then(function successCallback(response) {
+          console.log("Delete succeed");
+          var index = vm.personalTaxRecord.taxResults.map(function(x) {return x._id; }).indexOf(taxResultId);
+          if (index > -1) {
+            vm.personalTaxRecord.taxResults.splice(index, 1);
+            vm.historyMatrix = arrayToMatrix(vm.personalTaxRecord.taxResults, 2);
+          }
+        }, function errorCallback(response) {
+          console.log('Something went wrong when deleting taxResult.');
+        });
+    }
   }
 })();

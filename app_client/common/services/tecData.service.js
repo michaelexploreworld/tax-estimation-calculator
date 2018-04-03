@@ -17,10 +17,15 @@
       return $http.post('/api/personalTaxRecords/' + personalTaxRecordId + '/taxResults', taxResult);
     }
 
+    var deleteTaxResult = function (personalTaxRecordId, taxResultId) {
+      return $http.delete('/api/personalTaxRecords/' + personalTaxRecordId + '/taxResults/' + taxResultId);
+    }
+
     return {
       getTaxRateList: getTaxRateList,
       getPersonalTaxRecordByEmail: getPersonalTaxRecordByEmail,
-      postTaxResult: postTaxResult
+      postTaxResult: postTaxResult,
+      deleteTaxResult: deleteTaxResult
     };
   }
 })();

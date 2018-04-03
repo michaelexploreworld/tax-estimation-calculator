@@ -34,7 +34,6 @@
         var personalTaxRecord = response.data;
         if (personalTaxRecord) {
           vm.personalTaxRecord = personalTaxRecord;
-          console.log('Personal record: ' + vm.personalTaxRecord);
         }
       }, function errorCallback(response) {
         console.log('Something went wrong when getting personalTaxRecord.');
