@@ -80,7 +80,7 @@
         if (!vm.formData.supRate) {
           supRate = 0;
         } else {
-          supRate = parseInt(vm.formData.supRate);
+          supRate = parseFloat(vm.formData.supRate);
           if (!supRate) {
             throw "Sup rate field must be a number";
           } else if (supRate < 0 || supRate > 100) {
