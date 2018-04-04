@@ -23,7 +23,13 @@
         vm.formError = "All fields required, please try again";
         return false;
       } else {
-        vm.doRegister();
+        var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (reg.test(String(vm.credentials.email).toLowerCase())) {
+          vm.doRegister();
+        } else {
+          vm.formError = "Email field is invalid";
+          return false;
+        }
       }
     };
 
