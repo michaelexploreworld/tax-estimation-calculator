@@ -34,9 +34,9 @@ Save .env file.
 ```
 Start development mode.
 ```
-node start
+npm start
 ```
 Or start production mode.
 ```
-NODE_ENV=production MONGOLAB_URI=yourExternalMongoDatabase node start
+NODE_ENV=production MONGOLAB_URI=yourExternalMongoDatabase npm start
 ```
