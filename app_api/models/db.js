@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var dbURI = 'mongodb://localhost/TEC';
 
+if (process.env.NODE_ENV === 'production') {
+  dbURI = process.env.MONGOLAB_URI;
+}
+
 // Connect to MongoDB server
 mongoose.connect(dbURI);
 
