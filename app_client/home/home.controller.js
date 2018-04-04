@@ -4,8 +4,8 @@
     .controller('homeCtrl', homeCtrl);
 
 
-  homeCtrl.$inject = ['tecData', 'taxCalculator'];
-  function homeCtrl (tecData, taxCalculator) {
+  homeCtrl.$inject = ['tecData', 'taxCalculator', 'authentication'];
+  function homeCtrl (tecData, taxCalculator, authentication) {
     var vm = this;
 
     vm.pageHeader = {
@@ -29,15 +29,18 @@
       });
 
     // If user login, fetch personalTaxRecord by user email, otherwise, do nothing.
-    tecData.getPersonalTaxRecordByEmail('test@gmail.com')
-      .then(function successCallback(response) {
-        var personalTaxRecord = response.data;
-        if (personalTaxRecord) {
-          vm.personalTaxRecord = personalTaxRecord;
-        }
-      }, function errorCallback(response) {
-        console.log('Something went wrong when getting personalTaxRecord.');
-      });
+    if(authentication.isLoggedIn()) {
+      var currentUser = authentication.currentUser();
+      tecData.getPersonalTaxRecordByEmail()
+        .then(function successCallback(response) {
+          var personalTaxRecord = response.data;
+          if (personalTaxRecord) {
+            vm.personalTaxRecord = personalTaxRecord;
+          }
+        }, function errorCallback(response) {
+          console.log('Something went wrong when getting personalTaxRecord.');
+        });
+    }
 
     vm.annualResult = {
       gross: 0,
@@ -112,13 +115,14 @@
         };
 
         // If user login, save annual rersult, otherwise, don't save.
-        tecData.postTaxResult(vm.personalTaxRecord._id, vm.annualResult)
-          .then(function successCallback(response) {
-            console.log('Save succeed: ' + response.data);
-          }, function errorCallback(response) {
-            console.log('Something went wrong when getting personalTaxRecord.');
-          });
-
+        if(authentication.isLoggedIn()) {
+          tecData.postTaxResult(vm.personalTaxRecord._id, vm.annualResult)
+            .then(function successCallback(response) {
+              console.log('Save succeed: ' + response.data);
+            }, function errorCallback(response) {
+              console.log('Something went wrong when getting personalTaxRecord.');
+            });
+        }
       } catch(err) {
         vm.formError = err;
       }

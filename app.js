@@ -1,3 +1,4 @@
+require('dotenv').load();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -6,9 +7,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
+var passport = require('passport');
 
 // Connecting to the database.
 require('./app_api/models/db');
+require('./app_api/config/passport');
 
 var app = express();
 
@@ -17,11 +20,15 @@ var appClientFiles = [
   'app_client/app.js',
   'app_client/home/home.controller.js',
   'app_client/history/history.controller.js',
+  'app_client/auth/register/register.controller.js',
+  'app_client/auth/login/login.controller.js',
+  'app_client/common/directives/navigation/navigation.controller.js',
   'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/pageHeader/pageHeader.directive.js',
   'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
   'app_client/common/services/tecData.service.js',
   'app_client/common/services/taxCalculator.service.js',
+  'app_client/common/services/authentication.service.js',
   'app_client/common/filters/formatFloat.filter.js'
 ];
 var code = appClientFiles.map(function (file) {
@@ -44,6 +51,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
+app.use(passport.initialize());
 
 // Start taxRatesGenerator to scrap tax rates from https://www.exfin.com/australian-tax-rates.
 var TaxRatesGenerator = require('./server_process/taxRatesGenerator');
@@ -57,6 +65,15 @@ app.use('/api', routesApi);
 // If no URL requests are matched, send back index.html.
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
+});
+
+// error handlers
+// Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
 });
 
 // catch 404 and forward to error handler
